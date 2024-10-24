@@ -1,65 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bride/Groom Price Calculator</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dowry Price Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Bride/Groom Price Calculator</h1>
-  <form id="dowryCalculator">
-    <!-- Education -->
-    <label for="education">Education:</label>
-    <select id="education">
-      <option value="1.5">Undergraduate</option>
-      <option value="1.2">College</option>
-      <option value="1.05">High School</option>
-      <option value="0.9">Middle School</option>
-    </select>
+    <div class="container mt-5">
+        <h1 class="text-center">Dowry Price Calculator</h1>
+        <form id="dowryForm">
+            <label for="education" class="form-label">Education Level:</label> 
+            <select id="education" class="form-select">
+                <option value="1.5">Undergraduate degree</option>
+                <option value="1.2">College degree</option>
+                <option value="1.05">High school degree</option>
+                <option value="0.9">Middle school degree</option>
+            </select>
+            <hr>
 
-    <!-- Family Net Worth -->
-    <label for="netWorth">Family Net Worth:</label>
-    <select id="netWorth">
-      <option value="2">More than 10,000$</option>
-      <option value="1.5">Between 5,000$ and 10,000$</option>
-      <option value="1.2">Less than 5,000$</option>
-    </select>
+            <label for="networth" class="form-label">Family Net Worth:</label>
+            <select id="networth" class="form-select">
+                <option value="2">More than 10,000$</option>
+                <option value="1.5">Between 5,000$ and 10,000$</option>
+                <option value="1.2">Less than 5,000$</option>
+            </select>
+            <hr>
 
-    <!-- Caste -->
-    <label for="caste">Caste:</label>
-    <select id="caste">
-      <option value="100">Brahmin (+100$)</option>
-      <option value="50">Kshatriya (+50$)</option>
-      <option value="20">Vaishya (+20$)</option>
-      <option value="10">Shudra (+10$)</option>
-      <option value="-50">Untouchable (-50$)</option>
-    </select>
+            <label for="caste" class="form-label">Caste:</label>
+            <select id="caste" class="form-select">
+                <option value="100">Brahmin (+100$)</option>
+                <option value="50">Kshatriya (+50$)</option>
+                <option value="20">Vaishya (+20$)</option>
+                <option value="10">Shudra (+10$)</option>
+                <option value="-50">Varna - untouchable (-50$)</option>
+            </select>
+            <hr>
 
-    <!-- Skills -->
-    <label>Skills:</label>
-    <input type="checkbox" id="skillInstrument" value="10"> Plays a musical instrument<br>
-    <input type="checkbox" id="skillCook" value="20"> Good cook<br>
-    <input type="checkbox" id="skillEasygoing" value="15"> Easygoing character<br>
-    <input type="checkbox" id="skillSing" value="10"> Sings well<br>
+            <label>Skills:</label><br>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="music" value="10">
+                <label class="form-check-label" for="music">Plays a musical instrument (+10$)</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="cook" value="20">
+                <label class="form-check-label" for="cook">Good cook (+20$)</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="easygoing" value="15">
+                <label class="form-check-label" for="easygoing">Easygoing character (+15$)</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="sing" value="10">
+                <label class="form-check-label" for="sing">Sings well (+10$)</label>
+            </div>
+            <hr>
 
-    <!-- Age -->
-    <label>Age:</label>
-    <input type="radio" name="age" value="1.5" checked> 18-23<br>
-    <input type="radio" name="age" value="1.2"> 24-27<br>
-    <input type="radio" name="age" value="0.95"> 28+<br>
+            <label>Age:</label><br>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="age" value="1.5">
+                <label class="form-check-label">18-23</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="age" value="1.2">
+                <label class="form-check-label">24-27</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="age" value="0.95">
+                <label class="form-check-label">28+</label>
+            </div>
+            <hr>
 
-    <!-- Reputation -->
-    <label>Reputation:</label>
-    <input type="checkbox" id="gossipParent" value="0.85"> Gossips about parent's attitude<br>
-    <input type="checkbox" id="gossipCharacter" value="0.9"> Gossips about character<br>
-    <input type="checkbox" id="gossipGeneral" value="-20"> General gossips around person (-20$)<br><br>
+            <label>Reputation:</label><br>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="parentGossip" value="0.85">
+                <label class="form-check-label" for="parentGossip">Gossips about parent's attitude (0.85x)</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="characterGossip" value="0.9">
+                <label class="form-check-label" for="characterGossip">Gossips about character (0.9x)</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="generalGossip" value="-20">
+                <label class="form-check-label" for="generalGossip">General gossips (-20$)</label>
+            </div>
+            <hr>
 
-    <button type="button" id="calculateBtn">Calculate Dowry Price</button>
-  </form>
+            <button type="button" id="calculate" class="btn btn-primary">Calculate Dowry Price</button>
+        </form>
 
-  <div id="result"></div>
+        <p id="result" class="result mt-4"></p>
+    </div>
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
