@@ -1,47 +1,29 @@
-document.getElementById('calculateBtn').addEventListener('click', function() {
-    // Начальная цена
+document.getElementById('calculate').addEventListener('click', calculatePrice);
+
+function calculatePrice() {
     let basePrice = 100;
 
-    // Получение значений из формы
-    const educationCoeff = parseFloat(document.getElementById('education').value);
-    const netWorthCoeff = parseFloat(document.getElementById('netWorth').value);
-    const casteBonus = parseFloat(document.getElementById('caste').value);
+    let educationCoeff = parseFloat(document.getElementById('education').value);
+    let netWorthCoeff = parseFloat(document.getElementById('networth').value);
+    let price = basePrice * educationCoeff * netWorthCoeff;
 
-    // Считаем бонусы за навыки
-    let skillsBonus = 0;
-    if (document.getElementById('skillInstrument').checked) {
-        skillsBonus += parseFloat(document.getElementById('skillInstrument').value);
-    }
-    if (document.getElementById('skillCook').checked) {
-        skillsBonus += parseFloat(document.getElementById('skillCook').value);
-    }
-    if (document.getElementById('skillEasygoing').checked) {
-        skillsBonus += parseFloat(document.getElementById('skillEasygoing').value);
-    }
-    if (document.getElementById('skillSing').checked) {
-        skillsBonus += parseFloat(document.getElementById('skillSing').value);
-    }
+    let casteBonus = parseFloat(document.getElementById('caste').value);
+    price += casteBonus;
 
-    // Возраст
-    const ageCoeff = parseFloat(document.querySelector('input[name="age"]:checked').value);
+    if (document.getElementById('music').checked) price += parseFloat(document.getElementById('music').value);
+    if (document.getElementById('cook').checked) price += parseFloat(document.getElementById('cook').value);
+    if (document.getElementById('easygoing').checked) price += parseFloat(document.getElementById('easygoing').value);
+    if (document.getElementById('sing').checked) price += parseFloat(document.getElementById('sing').value);
 
-    // Репутация
+    let ageCoeff = parseFloat(document.querySelector('input[name="age"]:checked').value);
+    price *= ageCoeff;
+
     let reputationCoeff = 1;
-    let reputationPenalty = 0;
-    if (document.getElementById('gossipParent').checked) {
-        reputationCoeff *= parseFloat(document.getElementById('gossipParent').value);
-    }
-    if (document.getElementById('gossipCharacter').checked) {
-        reputationCoeff *= parseFloat(document.getElementById('gossipCharacter').value);
-    }
-    if (document.getElementById('gossipGeneral').checked) {
-        reputationPenalty += parseFloat(document.getElementById('gossipGeneral').value);
-    }
+    if (document.getElementById('parentGossip').checked) reputationCoeff *= parseFloat(document.getElementById('parentGossip').value);
+    if (document.getElementById('characterGossip').checked) reputationCoeff *= parseFloat(document.getElementById('characterGossip').value);
+    if (document.getElementById('generalGossip').checked) price += parseFloat(document.getElementById('generalGossip').value);
 
-    // Итоговая цена
-    let finalPrice = basePrice * educationCoeff * netWorthCoeff * ageCoeff * reputationCoeff + casteBonus + skillsBonus + reputationPenalty;
+    price *= reputationCoeff;
 
-    // Вывод результата
-    const resultDiv = document.getElementById('result');
-    resultDiv.innerHTML = `The final dowry price is: <span>${finalPrice.toFixed(2)}$</span>`;
-});
+    document.getElementById('result').innerText = "Final Price: $" + price.toFixed(2);
+}
